@@ -4,7 +4,7 @@ from werkzeug.serving import run_simple
 import json
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:kfelagund7@173.220.194.84/mediasrv'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://user:pword@host/db'
 app.debug = True
 
 from models.user import User
@@ -12,7 +12,6 @@ from models.user import User
 @app.route('/')
 def root():
 	usrs = User.query.all()
-	
 	return Response([json.dumps([u.username for u in usrs ])], mimetype='application/json')
 
 
